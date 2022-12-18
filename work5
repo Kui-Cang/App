@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  static const String _title = '行動裝置作業:運動';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: const Center(
+          child: MyStatefulWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+enum SingingCharacter { run, swim, playball }
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({super.key});
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  SingingCharacter? _character = SingingCharacter.run;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        ListTile(
+          title: const Text('run'),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.run,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('swim'),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.swim,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('playball'),
+          leading: Radio<SingingCharacter>(
+            value: SingingCharacter.playball,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
